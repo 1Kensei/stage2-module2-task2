@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if(Users.getInstance().getUsers().contains(login) && (password!=null && !password.isEmpty())) {
+        if(Users.getInstance().getUsers().contains(login) && !password.isBlank()) {
             HttpSession session = req.getSession(true);
             session.setAttribute("user", login);
             resp.sendRedirect("/user/hello.jsp");
